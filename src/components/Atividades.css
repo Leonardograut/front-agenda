@@ -1,0 +1,23 @@
+.atividades-page { max-width: 980px; margin: 2rem auto; padding: 1rem; }
+header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+.form-section, .list-section { background:#fff; padding:1rem; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.04); margin-bottom:1rem; }
+.atividade-form { display:flex; flex-direction:column; gap:0.6rem; }
+.atividade-form label { font-weight:600; }
+.atividade-form input, .atividade-form textarea, .atividade-form select { padding:0.5rem; border-radius:6px; border:1px solid #ddd; }
+.row { display:flex; gap:1rem; }
+.row > div { flex:1; }
+.form-actions { display:flex; gap:0.6rem; margin-top:0.5rem; }
+.btn { padding:0.6rem 0.9rem; border-radius:6px; cursor:pointer; background:#0d6efd; color:#fff; border:none; }
+.btn.alt { background:#6c757d; }
+.btn:disabled { opacity:0.7; cursor:not-allowed; }
+.error { color:#b00020; margin-top:0.5rem; }
+
+/* lista */
+.atividades-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.8rem; }
+.atividade-item { border:1px solid #eee; padding:0.8rem; border-radius:8px; display:flex; gap:1rem; align-items:flex-start; justify-content:space-between; }
+.item-main { min-width:220px; }
+.meta { display:flex; gap:0.6rem; margin-top:0.4rem; color:#666; font-size:0.9rem; }
+.item-body { flex:1; margin-left:0.6rem; color:#333; }
+.item-actions { display:flex; flex-direction:column; gap:0.4rem; }
+.item-actions button { padding:0.4rem 0.6rem; border-radius:6px; border:1px solid #ddd; background:#fff; cursor:pointer; }
+.item-actions button.danger { color:#fff; background:#d9534f; border:none; }
