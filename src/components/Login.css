@@ -1,11 +1,25 @@
 
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #eef4ff 0%, #f8fbff 100%);
+  padding: 1.5rem;
+}
+
 .login-card {
-  max-width: 400px;
-  margin: 4rem auto;
+  width: min(100%, 420px);
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 18px;
   background-color: #fff;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 35px rgba(20, 33, 61, 0.12);
+}
+
+.login-card h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
 }
 
 .login-form {
@@ -15,23 +29,36 @@
 }
 
 .login-form label {
-  font-weight: 500;
+  font-weight: 600;
+  color: #213547;
 }
 
-.login-form input {
-  padding: 0.6rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.login-form input,
+.login-form select {
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #d9e3f0;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #213547;
+  background-color: #fff;
+}
+
+.login-form input:focus,
+.login-form select:focus {
+  outline: 2px solid #4c7dff;
+  border-color: #4c7dff;
 }
 
 .btn {
   margin-top: 1rem;
-  padding: 0.7rem;
-  background-color: #0d6efd;
+  padding: 0.8rem;
+  background: linear-gradient(135deg, #2f6fed 0%, #4c7dff 100%);
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .btn:disabled {
@@ -41,25 +68,25 @@
 
 .message {
   margin-top: 1rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   min-height: 1.2rem;
 }
 
 .message.success {
-  color: green;
+  color: #1f8f4f;
 }
 
 .message.error {
-  color: red;
+  color: #d64545;
 }
 
 .muted {
   margin-top: 1.2rem;
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 0.95rem;
+  color: #667085;
 }
 
 .muted a {
-  color: #0d6efd;
+  color: #2f6fed;
   text-decoration: none;
 }

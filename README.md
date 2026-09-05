@@ -1,16 +1,72 @@
-# React + Vite
+# Front Agenda
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação React para gerenciamento de atividades com autenticação e interface organizada.
 
-Currently, two official plugins are available:
+## Como rodar o projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Instale as dependências
 
-## React Compiler
+```bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Inicie o projeto em modo de desenvolvimento
 
-## Expanding the ESLint configuration
+```bash
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+A aplicação ficará disponível em:
+
+```text
+http://localhost:5173
+```
+
+### 3. Execute a build para produção
+
+```bash
+npm run build
+```
+
+### 4. Pré-visualize a build
+
+```bash
+npm run preview
+```
+
+## Requisitos
+
+- Node.js instalado
+- Backend rodando na porta 8080, pois a aplicação consome a API em:
+
+```text
+http://localhost:8080
+```
+
+## Tecnologias usadas
+
+- React
+- Vite
+- React Router DOM
+- JavaScript ES6+
+- CSS moderno para estilização
+- Fetch API para consumo de backend
+
+## Estrutura do projeto
+
+```text
+src/
+  components/         # componentes da interface
+  services/           # comunicação com a API
+  entities/           # modelos e regras de negócio básicas
+  assets/             # arquivos estáticos
+```
+
+## Funcionalidades
+
+- Tela de login
+- Tela de cadastro
+- Listagem de atividades
+- Cadastro, edição e exclusão de atividades
+- Layout com sidebar para navegação
+- Exibição de atividades em um calendário

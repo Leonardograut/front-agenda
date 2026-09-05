@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
+import { login } from '../services/authService';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -11,46 +12,24 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit(event) {
+    event.preventDefault();
     setMessage('');
     setStatusClass('');
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:8080/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim(), password }),
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        setMessage('Erro: ' + (text || res.statusText));
-        setStatusClass('error');
-        setLoading(false);
-        return;
+      const { token, userName } = await login(email, password);
+      if (token) {
+        localStorage.setItem('authToken', token);
       }
-
-      // o backend pode retornar token em texto ou JSON
-      const contentType = res.headers.get('content-type') || '';
-      let token;
-      if (contentType.includes('application/json')) {
-        const data = await res.json();
-        token = data.token || JSON.stringify(data);
-      } else {
-        token = await res.text();
+      if (userName) {
+        localStorage.setItem('userName', userName);
       }
-
-      localStorage.setItem('authToken', token);
-      setMessage('Autenticado com sucesso. Token salvo em localStorage.');
       setStatusClass('success');
-
-      // redireciona após login bem-sucedido
       setTimeout(() => navigate('/atividades'), 1200);
-
     } catch (err) {
-      setMessage('Erro de conexão: ' + err.message);
+      setMessage('Erro: ' + (err.message || err));
       setStatusClass('error');
     } finally {
       setLoading(false);
@@ -58,40 +37,42 @@ export default function Login() {
   }
 
   return (
-    <main className="card login-card">
-      <h1>Entrar</h1>
-      <form onSubmit={handleSubmit} className="login-form">
-        <label htmlFor="email">E-mail</label>
-        <input
-          id="email"
-          type="email"
-          required
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
+    <main className="login-page">
+      <section className="login-card">
+        <h1>Entrar</h1>
+        <form onSubmit={handleSubmit} className="login-form">
+          <label htmlFor="email">E-mail</label>
+          <input
+            id="email"
+            type="email"
+            required
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
 
-        <label htmlFor="password">Senha</label>
-        <input
-          id="password"
-          type="password"
-          required
-          minLength={6}
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
+          <label htmlFor="password">Senha</label>
+          <input
+            id="password"
+            type="password"
+            required
+            minLength={6}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
 
-        <button type="submit" className="btn" disabled={loading}>
-          {loading ? 'Entrando...' : 'Entrar'}
-        </button>
-      </form>
+          <button type="submit" className="btn" disabled={loading}>
+            {loading ? 'Entrando...' : 'Entrar'}
+          </button>
+        </form>
 
-      <div id="message" className={`message ${statusClass}`} aria-live="polite">
-        {message}
-      </div>
+        <div id="message" className={`message ${statusClass}`} aria-live="polite">
+          {message}
+        </div>
 
-      <p className="muted">
-        Ainda não tem conta? <Link to="/register">Registre-se</Link>
-      </p>
+        <p className="muted">
+          Ainda não tem conta? <Link to="/register">Registre-se</Link>
+        </p>
+      </section>
     </main>
   );
 }
